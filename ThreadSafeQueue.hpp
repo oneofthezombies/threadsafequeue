@@ -13,7 +13,7 @@ public:
 
     void push(T&& data) {
         {
-            std::lock_guard<std::mutex> lock(mutex_);
+            std::unique_lock<std::mutex> lock(mutex_);
             queue_.push(std::move(data));
         }
         signal_.notify_one();
